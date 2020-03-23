@@ -11,5 +11,4 @@ class App(models.Model):
 
 class Comment(models.Model):
     words = models.TextField(blank=True)
-    app = models.ForeignKey(App, on_delete=models.CASCADE)
     
