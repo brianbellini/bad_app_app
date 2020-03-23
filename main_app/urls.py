@@ -15,5 +15,5 @@ urlpatterns = [
     path('apps/<int:app_id>/add_comment/', views.add_comment, name='add_comment'),
 
     #--------------------ACCOUNTS-----------------------------
-    path('accounts/signup/', views.signup, name='signup'),
+    path('accounts/signup/', views.RegisterForm, name='signup'),
 ]

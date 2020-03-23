@@ -75,20 +75,20 @@ class CommentDelete(LoginRequiredMixin, DeleteView):
 #     context = {'form': form, 'error_message': error_message}
 #     return render(request, 'registration/signup.html', context)
 
-# class RegisterForm(UserCreationForm):
-#     email = forms.EmailField(label = 'Email')
-#     first_name = forms.CharField(label = 'First name')
-#     last_name = forms.CharField(label= 'Last name')
+class RegisterForm(UserCreationForm):
+    email = forms.EmailField(label = 'Email')
+    first_name = forms.CharField(label = 'First name')
+    last_name = forms.CharField(label= 'Last name')
 
-#     class Meta:
-#         model = User
-#         fields = ('username', 'first_name', 'last_name', 'email',)
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email',)
 
-# def save(self, commit=True):
-#     user = super(RegisterForm, self).save(commit-False)
-#     user.first_name = first_name
-#     user.last_name = last_name
-#     user.email = self.cleaned_data["email"]
-#     if commit:
-#         user.save()
-#     return user
+def save(self, commit=True):
+    user = super(RegisterForm, self).save(commit-False)
+    user.first_name = first_name
+    user.last_name = last_name
+    user.email = self.cleaned_data["email"]
+    if commit:
+        user.save()
+    return user
