@@ -2,8 +2,7 @@ a {
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
     color: #DDDDDD;
-    padding: 5px 10px;
-    margin-right: 5px;
+    padding: 5px 10px 5px 10px;
 }
 
 a:hover {
@@ -13,6 +12,10 @@ a:hover {
 body {
     padding: 0;
     margin: 0;
+    font-family: "Monserrat", sans-serif;
+    display: grid;
+    grid-template-rows: 70px 1fr 40px;
+    height: 100vh;
 }
 
 footer {
@@ -27,6 +30,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    grid-row: 3 / 4;
 }
 
 .footer-div {
@@ -36,10 +40,10 @@ footer {
 header {
     background-color: #202020;
     margin: 0;
-    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    grid-row: 1 / 2;
 }
 
 #header-left {
@@ -56,7 +60,66 @@ header {
     background-size: 100%;
 }
 
+.home-left {
+    /* background-color: teal; */
+    grid-column: 1 / 2;
+    margin: 10px;
+    display: grid;
+    grid-template-rows: 5fr 6fr;
+}
+
+.home-right {
+    background-color: #A0A0A0;
+    grid-column: 2 / 3;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+main {
+    grid-row: 2 / 3;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+
+}
+
+#of-the-day {
+    grid-row: 1 / 2;
+    margin-bottom: 5px;
+    background-color: #800000;
+    /* text-align: center; */
+    border-radius: 5px;
+}
+
+#recent {
+    grid-row: 2 / 3;
+    margin-top: 5px;
+    background-color: #202020;
+    border-radius: 5px;
+    /* text-align: center; */
+}
+
+/* .red-text {
+    color: #800000;
+}
+
+.darkgrey-text {
+    color: #202020;
+} */
+
 .right-border {
     border-right: 1px solid #DDDDDD;
 }
 
+.section-title {
+    font-weight: 100;
+    border-radius: 0px 25px 25px 0 ;
+    background-color: white;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    display: inline-block;
+    padding: 5px 15px 5px 15px;
+    font-family: "Montserrat", sans-serif;
+    margin: 10px 0;
+    text-align: center;
+    width: 300px;
+    color: #800000
+}
