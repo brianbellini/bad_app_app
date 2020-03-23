@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import App, Comment
+from .forms import SignupForm
 from django.contrib.auth.models import User
 
 
@@ -61,34 +62,16 @@ class CommentDelete(LoginRequiredMixin, DeleteView):
   success_url = '/apps/'
 
 #--------------------ACCOUNTS-----------------------------
-# def signup(request):
-#     error_message = ''
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             return redirect('index')
-#         else:
-#             error_message = 'Invalid sign up - try again'
-#     form = UserCreationForm()
-#     context = {'form': form, 'error_message': error_message}
-#     return render(request, 'registration/signup.html', context)
-
-class RegisterForm(UserCreationForm):
-    email = forms.EmailField(label = 'Email')
-    first_name = forms.CharField(label = 'First name')
-    last_name = forms.CharField(label= 'Last name')
-
-    class Meta:
-        model = User
-        fields = ('username', 'first_name', 'last_name', 'email',)
-
-def save(self, commit=True):
-    user = super(RegisterForm, self).save(commit-False)
-    user.first_name = first_name
-    user.last_name = last_name
-    user.email = self.cleaned_data["email"]
-    if commit:
-        user.save()
-    return user
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+        else:
+            error_message = 'Invalid sign up - try again'
+    form = SignupForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'registration/signup.html', context)
