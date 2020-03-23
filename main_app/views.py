@@ -3,9 +3,31 @@ from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
+
 # Create your views here.
+#--------------------APPS-----------------------------
 def home(request):
     return render(request, 'home.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def apps_index(request):
+    return HttpResponse('INDEX')
+
+def app_detail(request):
+    return HttpResponse('DETAIL')
+
+def app_create(request):
+    return HttpResponse('CREATE NEW APP')
+
+def app_update(request):
+    return HttpResponse('UPDATE APP')
+
+def app_delete(request):
+    return HttpResponse('DELETE APP')
+
+#--------------------ACCOUNTS-----------------------------
 
 def signup(request):
     error_message = ''
@@ -14,8 +36,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            # DONT FORGET TO CHANGE THIS REDIRECT YOU IDIOTS
-            return redirect('home')
+            return redirect('index')
         else:
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
