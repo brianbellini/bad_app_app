@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +9,15 @@
 <body>
     <header>
         <nav>
+            <ul>
             {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}">Log Out</a>
+                <li><a href="{% url 'logout' %}">Log Out</a></li>
+                <li><a href="/apps">My Apps</a></li>
             {% else %}
-                <a href="{% url 'login' %}">Log In</a>
-                <a href="{% url 'signup' %}">Sign Up</a>
+                <li><a href="{% url 'login' %}">Log In</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
             {% endif %}
+            </ul>
         </nav>
     </header>
     {% block content %}
