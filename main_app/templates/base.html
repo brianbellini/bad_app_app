@@ -1,18 +1,28 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Chango|Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'main_app/style.css' %}">
     <title>Bad App App</title>
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
+        <div id="header-left">
+            <a href="{% url 'home' %}"><div id="header-logo"></div></a>
             {% if user.is_authenticated %}
-                <li><a href="{% url 'logout' %}">Log Out</a></li>
-                <li><a href="/apps">My Apps</a></li>
+                <a>Welcome, Bitch!</a>
+            {% endif %}
+        </div>
+        <nav class="header-nav">
+            {% if user.is_authenticated %}
+                <a href="#" class="right-border">New Bad App</a>
+                <a href="#" class="right-border">My Bad Apps</a>
+                <a href="#" class="right-border">Find Bad Apps</a>
+                <a href="{% url 'logout' %}">Log Out</a>
             {% else %}
                 <li><a href="{% url 'login' %}">Log In</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
@@ -20,7 +30,12 @@
             </ul>
         </nav>
     </header>
-    {% block content %}
-    {% endblock %}
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="footer-div">All Rights Reserved, &copy; 2020 Bad App App</div>
+    </footer>
 </body>
 </html>
