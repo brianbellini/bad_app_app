@@ -100,19 +100,19 @@ main {
 
 .otd {
     width: 90%;
-    height: 60%;
+    height: 130px;
     background-color: white;
     margin: 20px auto;
-    min-height: 130px;
+    /* min-height: 130px; */
     display: grid;
     grid-template-columns: 130px 1fr;
     font-family: "Montserrat", sans-serif;
-    /* border-top: 3px solid #DDDDDD;
-    border-left: 3px solid #DDDDDD;
-    border-bottom: 3px solid #AAAAAA;
-    border-right: 3px solid #AAAAAA; */
     box-shadow: 6px 6px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
+}
+
+.otd-slogan-div {
+    height: 51px;
 }
 
 .otd-info-div {
