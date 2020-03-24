@@ -16,8 +16,17 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 #--------------------APPS-----------------------------
+def landing(request):
+    apps = App.objects.all()
+    return render(request, 'landing.html', {'apps': apps})
+
 def home(request):
-    return render(request, 'home.html')
+    # App of the day - figure out how to find random
+    # Popular apps - app.objects.all sorted by number of votes sliced [:3]
+    # How many votes have the foreign key of that app -- Vote.object.all()
+    pop_apps = App.objects.all().order_by('net_votes')[:3]
+    my_apps = App.objects.filter(user=request.user)
+    return render(request, 'home.html', {'my_apps': my_apps, 'pop_apps': pop_apps})
 
 def about(request):
     return render(request, 'about.html')
