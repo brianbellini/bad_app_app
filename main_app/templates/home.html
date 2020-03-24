@@ -73,9 +73,10 @@
     </div>
     <div class="home-right">
         <h2 class="section-title">My BadApps</h2>
-        {% for app in pop_apps %}
-            <p>{{app}}</p>
-            <p>{{app.description}}</p>
-        {% endfor %}
+        
+        <p>{{ random_app.name }}</p>
+        <p>{{ random_app.slogan }}</p>
+        <p>{{ random_app.net_votes }}</p>
+        
     </div>
 {% endblock %}

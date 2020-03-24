@@ -1,18 +1,16 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from django import forms
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django import forms
 
 from .models import App, Comment
 from .forms import SignupForm
-from django.contrib.auth.models import User
-
+from random import randint
 
 # Create your views here.
 #--------------------APPS-----------------------------
@@ -22,11 +20,12 @@ def landing(request):
 
 def home(request):
     # App of the day - figure out how to find random
-    # Popular apps - app.objects.all sorted by number of votes sliced [:3]
-    # How many votes have the foreign key of that app -- Vote.object.all()
+    total = len(App.objects.all())
+    random = randint(1, total)
+    random_app = App.objects.get(id=random)
     pop_apps = App.objects.all().order_by('net_votes')[:3]
     my_apps = App.objects.filter(user=request.user)
-    return render(request, 'home.html', {'my_apps': my_apps, 'pop_apps': pop_apps})
+    return render(request, 'home.html', {'my_apps': my_apps, 'pop_apps': pop_apps, 'random_app': random_app})
 
 def about(request):
     return render(request, 'about.html')
@@ -37,7 +36,7 @@ def apps_index(request):
 
 def app_detail(request, app_id):
     app = App.objects.get(id=app_id)
-    comments = Comment.objects.filter(app_id)
+    comments = Comment.objects.filter(app = app_id)
 
     return render(request, 'apps/detail.html', {
         'app': app,
