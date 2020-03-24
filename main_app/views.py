@@ -43,21 +43,10 @@ def app_detail(request, app_id):
         'comments': comments,
     })
 
-@login_required
-def app_create(request):
-    return HttpResponse('CREATE NEW APP')
-
-@login_required
-def app_update(request):
-    return HttpResponse('UPDATE APP')
-
-@login_required
-def app_delete(request):
-    return HttpResponse('DELETE APP')
-
 class AppCreate(LoginRequiredMixin, CreateView):
     model = App
     fields = ['name', 'description', 'slogan', 'group', 'tag']
+    success_url = '/home/'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -66,6 +55,7 @@ class AppCreate(LoginRequiredMixin, CreateView):
 class AppUpdate(LoginRequiredMixin, UpdateView):
     model = App
     fields = ['description', 'slogan', 'group', 'tag']
+
 
 class AppDelete(LoginRequiredMixin, DeleteView):
     model = App
@@ -76,7 +66,7 @@ class AppDelete(LoginRequiredMixin, DeleteView):
 def add_comment(request, app_id):
     form = CommentForm(request.POST)
     if form.is_valid():
-        new_comment = form.save(commit=false)
+        new_comment = form.save(commit=False)
         new_comment.app_id = app_id
         new_comment.save()
     return redirect('detal', app_id=app_id)

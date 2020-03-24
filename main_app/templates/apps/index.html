@@ -1,1 +1,26 @@
 {% extends 'base.html' %}
+
+{% block content %}
+
+{% if apps %}
+    {% for app in apps %}
+        <div class="otd">
+            <div class="otd-photo-div">
+                <img class="otd-photo" src="https://i.imgur.com/e9pPCum.png?1">
+            </div>
+            <div class="otd-info-div">
+                <div class="otd-name-div">
+                    <h3 class="otd-name">{{ app.name }}</h3>
+                </div>
+                <div class="otd-slogan-div">
+                    <h5 class="otd-slogan">{{ app.slogan }}</h5>
+                </div>
+                <div class="tags-div">
+                    <p class="tags"><em>#{{ app.get_tag_display }}</em></p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1>{{ app.name }}</h1>
+<h2>{{ app.slogan }}</h2>
+<p>{{ app.description }}</h2>
+<h6>{{ app.tags }}</h2>
 
+<a style="color: black" href="{% url 'app_update' app.id %}">UPDATE THIS SHIT</a>
 
 
 {% endblock %}
