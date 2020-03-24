@@ -10,9 +10,9 @@
                 </div>
                 <div class="otd-info-div">
                     <div class="otd-name-div">
-                        <h3 class="otd-name">CHICKEN TINDER</h3>
+                        <h3 class="otd-name">{{random_app.name}}</h3>
                     </div>
-                    <div class="otd-desc-div"></div>
+                    <div class="otd-slogan-div"></div>
                     <div class="tags-div">
                         <p class="tags"><em>#dating</em></p>
                         <p class="tags"><em>#food</em></p>
@@ -23,60 +23,40 @@
         </div>
         <div id="popular">
             <h2 class="section-title">Popular BadApps</h2>
+            {% if pop_apps %}
+            {% for app in pop_apps %}
             <div class="otd">
                 <div class="otd-photo-div">
                     <img class="otd-photo" src="https://i.imgur.com/e9pPCum.png?1">
                 </div>
                 <div class="otd-info-div">
                     <div class="otd-name-div">
-                        <h3 class="otd-name">BADAPP APP</h3>
+                        <h3 class="otd-name">{{ app.name }}</h3>
                     </div>
-                    <div class="otd-desc-div"></div>
+                    <div class="otd-slogan-div">
+                        <h5 class="otd-slogan">{{ app.slogan }}</h5>
+                    </div>
                     <div class="tags-div">
-                        <p class="tags"><em>#finance</em></p>
-                        <p class="tags"><em>#fitness</em></p>
-                        <p class="tags"><em>#bullshit</em></p>
+                        {% if app.tag.count %}
+                            {% for tag in app.tag.all %}
+                            <p class="tags"><em>#{{ tag.name }}</em></p>
+                            {% endfor %}
+                        {% else %}
+                            <p>NO TAGS</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-            <div class="otd">
-                <div class="otd-photo-div">
-                    <img class="otd-photo" src="https://i.imgur.com/sb1xqAvb.jpg">
-                </div>
-                <div class="otd-info-div">
-                    <div class="otd-name-div">
-                        <h3 class="otd-name">SMACK TALK</h3>
-                    </div>
-                    <div class="otd-desc-div"></div>
-                    <div class="tags-div">
-                        <p class="tags"><em>#food</em></p>
-                        <p class="tags"><em>#not talking</em></p>
-                    </div>
-                </div>
-            </div>
-            <div class="otd">
-                <div class="otd-photo-div">
-                    <img class="otd-photo" src="https://i.imgur.com/Sr0KfJZb.jpg">
-                </div>
-                <div class="otd-info-div">
-                    <div class="otd-name-div">
-                        <h3 class="otd-name">DUDE WHERE WAS MY FOOD</h3>
-                    </div>
-                    <div class="otd-desc-div"></div>
-                    <div class="tags-div">
-                        <p class="tags"><em>#food</em></p>
-                        <p class="tags"><em>#yesterday</em></p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
     <div class="home-right">
         <h2 class="section-title">My BadApps</h2>
         
-        <p>{{ random_app.name }}</p>
+        <!-- <p>{{ random_app.name }}</p>
         <p>{{ random_app.slogan }}</p>
-        <p>{{ random_app.net_votes }}</p>
+        <p>{{ random_app.net_votes }}</p> -->
         
     </div>
 {% endblock %}
