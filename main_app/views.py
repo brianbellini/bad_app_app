@@ -55,6 +55,22 @@ def app_update(request):
 def app_delete(request):
     return HttpResponse('DELETE APP')
 
+class AppCreate(LoginRequiredMixin, CreateView):
+    model = App
+    fields = ['name', 'description', 'slogan', 'group', 'tag']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class AppUpdate(LoginRequiredMixin, UpdateView):
+    model = App
+    fields = ['description', 'slogan', 'group', 'tag']
+
+class AppDelete(LoginRequiredMixin, DeleteView):
+    model = App
+
+
 #--------------------COMMENTS-----------------------------
 @login_required
 def add_comment(request, app_id):
