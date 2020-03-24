@@ -3,16 +3,80 @@
 {% block content %}
     <div class="home-left">
         <div id="of-the-day">
-            <h2 class="section-title red-text">BadApp of the Day</h2>
-            <div id="app-card">
-                
+            <h2 class="section-title">BadApp of the Day</h2>
+            <div class="otd">
+                <div class="otd-photo-div">
+                    <img class="otd-photo" src="https://i.imgur.com/0FDqF1O.png">
+                </div>
+                <div class="otd-info-div">
+                    <div class="otd-name-div">
+                        <h3 class="otd-name">CHICKEN TINDER</h3>
+                    </div>
+                    <div class="otd-desc-div"></div>
+                    <div class="tags-div">
+                        <p class="tags"><em>#dating</em></p>
+                        <p class="tags"><em>#food</em></p>
+                        <p class="tags"><em>#lifestyle</em></p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="recent">
-            <h2 class="section-title darkgrey-text">Popular BadApps</h2>
+        <div id="popular">
+            <h2 class="section-title">Popular BadApps</h2>
+            <div class="otd">
+                <div class="otd-photo-div">
+                    <img class="otd-photo" src="https://i.imgur.com/e9pPCum.png?1">
+                </div>
+                <div class="otd-info-div">
+                    <div class="otd-name-div">
+                        <h3 class="otd-name">BADAPP APP</h3>
+                    </div>
+                    <div class="otd-desc-div"></div>
+                    <div class="tags-div">
+                        <p class="tags"><em>#finance</em></p>
+                        <p class="tags"><em>#fitness</em></p>
+                        <p class="tags"><em>#bullshit</em></p>
+                    </div>
+                </div>
+            </div>
+            <div class="otd">
+                <div class="otd-photo-div">
+                    <img class="otd-photo" src="https://i.imgur.com/sb1xqAvb.jpg">
+                </div>
+                <div class="otd-info-div">
+                    <div class="otd-name-div">
+                        <h3 class="otd-name">SMACK TALK</h3>
+                    </div>
+                    <div class="otd-desc-div"></div>
+                    <div class="tags-div">
+                        <p class="tags"><em>#food</em></p>
+                        <p class="tags"><em>#not talking</em></p>
+                    </div>
+                </div>
+            </div>
+            <div class="otd">
+                <div class="otd-photo-div">
+                    <img class="otd-photo" src="https://i.imgur.com/Sr0KfJZb.jpg">
+                </div>
+                <div class="otd-info-div">
+                    <div class="otd-name-div">
+                        <h3 class="otd-name">DUDE WHERE WAS MY FOOD</h3>
+                    </div>
+                    <div class="otd-desc-div"></div>
+                    <div class="tags-div">
+                        <p class="tags"><em>#food</em></p>
+                        <p class="tags"><em>#yesterday</em></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="home-right">
         <h2 class="section-title">My BadApps</h2>
+        
+        <p>{{ random_app.name }}</p>
+        <p>{{ random_app.slogan }}</p>
+        <p>{{ random_app.net_votes }}</p>
+        
     </div>
 {% endblock %}
