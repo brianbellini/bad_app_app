@@ -32,7 +32,9 @@ def about(request):
 
 def apps_index(request):
     total = len(App.objects.all())
+    print(f"total: {total}")
     random = randint(1, total)
+    print(f"random: {random}")
     random_app = App.objects.get(id=random)
     pop_apps = App.objects.all().order_by('net_votes')[:3]
     apps = App.objects.all()
