@@ -1,8 +1,9 @@
 from django.contrib import admin
-from .models import App, Comment, Vote
+from .models import App, Comment, Vote, Photo
 
 # Register your models here.
 admin.site.register(App)
 admin.site.register(Comment)
 admin.site.register(Vote)
+admin.site.register(Photo)
 
