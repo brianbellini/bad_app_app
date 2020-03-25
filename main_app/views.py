@@ -8,7 +8,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django import forms
 
-from .models import Vote, App, Comment
+import uuid
+import boto3
+S3_BASE_URL = 'HTTPS://s3-us-east-2.amazonaws.com/'
+BUCKET = 'badappapp'
+
+from .models import Vote, App, Comment, Photo
 from .forms import SignupForm
 from random import randint
 
@@ -143,3 +148,30 @@ def signup(request):
     form = SignupForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+#--------------------PHOTOS-----------------------------
+def add_photo(request, app_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            photo = Photo(url=url, cat_id=cat_id)
+            photo.save()
+        except:
+            print('An error occured uploading file to S3')
+    return redirect('detail', app_id=app_id)
+
+# {% for photo in app.photo_set.all %}
+#   <img src="{{photo.url}}">
+# {% empty %}
+#   <div>No Photos Uploaded</div>
+# {% endfor %}
+
+# <form action="{% url 'add_photo' app.id %}" enctype="multipart/form-data" method="POST">
+#     {% csrf_token %}
+#     <input type="file" name="photo-file">
+#     <input type="submit" class="btn" value="Upload Photo">
+# </form>
