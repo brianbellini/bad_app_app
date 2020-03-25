@@ -61,10 +61,12 @@ class App(models.Model):
         return reverse('detail', kwargs={'app_id': self.id})
 
     def bad_vote(self):
-        self.net_votes -= 1
+        self.net_votes = self.net_votes - 1
+        self.save()
     
     def good_vote(self):
-        self.net_votes += 1
+        self.net_votes = self.net_votes + 1
+        self.save()
 
 
 class Comment(models.Model):

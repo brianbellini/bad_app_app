@@ -9,5 +9,13 @@
 <a style="color: black" href="{% url 'app_update' app.id %}">UPDATE THIS SHIT</a>
 <a href="{% url 'app_delete' app.id %}">Delete</a>
 
+{% if voted %}
+    <h1>I VOTED</h1>
+    <h1>MY VOTE WAS {{ vote_value }}</h1>
+{% endif %}
+<a href="{% url 'bad' app.id %}" id="bad">BAD</a>
+<a href="{% url 'good' app.id %}" id="good">GOOD</a>
+
 
 {% endblock %}
+
