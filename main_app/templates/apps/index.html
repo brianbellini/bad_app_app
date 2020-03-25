@@ -1,26 +1,81 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-{% if apps %}
-    {% for app in apps %}
-        <div class="otd">
-            <div class="otd-photo-div">
-                <img class="otd-photo" src="https://i.imgur.com/e9pPCum.png?1">
-            </div>
-            <div class="otd-info-div">
-                <div class="otd-name-div">
-                    <h3 class="otd-name">{{ app.name }}</h3>
+    <div class="home-left">
+        <div id="of-the-day">
+            <a href="{% url 'detail' random_app.id %}">
+                <h2 class="section-title">BadApp of the Day</h2>
+                <div class="app-card" id="app-otd-card">
+                    <div class="photo-div">
+                        <img class="photo" src="https://i.imgur.com/0FDqF1O.png">
+                    </div>
+                    <div class="info-div">
+                        <div class="name-div">
+                            <h3 class="name">{{random_app.name}}</h3>
+                        </div>
+                        <div class="slogan-div">
+                            <h5 class="slogan">{{ random_app.slogan }}</h5>
+                        </div>
+                        <div class="tags-div">
+                            <p class="tags"><em>#{{ random_app.get_tag_display }}</em></p>
+                        </div>
+                    </div>
                 </div>
-                <div class="otd-slogan-div">
-                    <h5 class="otd-slogan">{{ app.slogan }}</h5>
-                </div>
-                <div class="tags-div">
-                    <p class="tags"><em>#{{ app.get_tag_display }}</em></p>
-                </div>
-            </div>
+            </a>
         </div>
-    {% endfor %}
-{% endif %}
-
+        
+        <div id="popular">
+            <h2 class="section-title">Popular BadApps</h2>
+            <br>
+            {% if pop_apps %}
+            {% for app in pop_apps %}
+            <a href="{% url 'detail' app.id %}">
+                <div class="app-card">
+                    <div class="photo-div">
+                        <img class="photo" src="https://i.imgur.com/e9pPCum.png?1">
+                    </div>
+                    <div class="info-div">
+                        <div class="name-div">
+                            <h3 class="name">{{ app.name }}</h3>
+                        </div>
+                        <div class="slogan-div">
+                            <h5 class="slogan">{{ app.slogan }}</h5>
+                        </div>
+                        <div class="tags-div">
+                            <p class="tags"><em>#{{ app.get_tag_display }}</em></p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="home-right">
+        <h2 class="section-title">Browse BadApps</h2>
+        <br>
+        {% if apps %}
+        {% for app in apps %}
+            <a href="{% url 'detail' app.id %}">
+                <div class="app-card">
+                    <div class="photo-div">
+                        <img class="photo" src="https://i.imgur.com/e9pPCum.png?1">
+                    </div>
+                    <div class="info-div">
+                        <div class="name-div">
+                            <h3 class="name">{{ app.name }}</h3>
+                        </div>
+                        <div class="slogan-div">
+                            <h4 class="slogan">{{ app.slogan }}</h4>
+                        </div>
+                        <div class="tags-div">
+                            <p class="tags"><em>#{{ app.get_tag_display }}</em></p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+        {% endif %}
+        
+    </div>
 {% endblock %}

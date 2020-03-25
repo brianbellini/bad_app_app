@@ -59,12 +59,13 @@ class App(models.Model):
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'app_id': self.id})
+
+    def bad_vote(self):
+        self.net_votes -= 1
     
-    # def get_net_votes(self):
-    #     all_votes = Vote.objects.filter(app=self.id)
-    #     net = 0
-    #     for vote in all_votes:
-    #         net += vote.value
+    def good_vote(self):
+        self.net_votes += 1
+
 
 class Comment(models.Model):
     words = models.TextField(blank=True)

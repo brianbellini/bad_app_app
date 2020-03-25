@@ -14,7 +14,10 @@
         <div id="header-left">
             <a href="{% url 'home' %}"><div id="header-logo"></div></a>
             {% if user.is_authenticated %}
-                <a>Welcome, Bitch!</a>
+                <div id="greeting">
+                    <a style="padding-bottom: 3px;">Welcome, {{user.get_short_name}}!</a>
+                    <a href="{% url 'logout' %}" style="color:#505050; font-size: 12px; padding: 0;">Not {{user.get_short_name}}?</a>
+                </div>
             {% endif %}
         </div>
         <nav class="header-nav">
