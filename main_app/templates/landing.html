@@ -3,7 +3,7 @@
 {% block content %}
 {% if apps %}
     {% for app in apps %}
-    <a href="{{ url 'detail' app.id }}">
+    <a href="{% url 'detail' app.id %}">
         <div class="otd">
             <div class="otd-photo-div">
                 <img class="otd-photo" src="https://i.imgur.com/e9pPCum.png?1">

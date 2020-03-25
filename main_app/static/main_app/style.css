@@ -1,12 +1,25 @@
 a {
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
-    color: #FFFFFF;
+    /* color: turquoise; */
     padding: 5px 10px 5px 10px;
 }
 
-a:hover {
-    color: #CC4040;
+.app-card {
+    width: 90%;
+    height: 130px;
+    background-color: white;
+    margin: 10px auto 0 auto;
+    /* min-height: 130px; */
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    font-family: "Montserrat", sans-serif;
+    box-shadow: 6px 6px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
+#app-otd-card {
+    margin: 25px auto;
 }
 
 body {
@@ -41,6 +54,14 @@ footer {
     margin-right: 15px;
 }
 
+#greeting {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
 header {
     background-color: #202020;
     margin: 0;
@@ -64,6 +85,14 @@ header {
     background-size: 100%;
 }
 
+header a {
+    color: white;
+}
+
+header a:hover {
+    color: #AA4040;
+}
+
 .home-left {
     /* background-color: teal; */
     grid-column: 1 / 2;
@@ -77,6 +106,13 @@ header {
     grid-column: 2 / 3;
     margin: 10px;
     border-radius: 5px;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.6);
+}
+
+.info-div {
+    text-align: center;
+    display: grid;
+    grid-template-rows: 50px 1fr 29px;
 }
 
 main {
@@ -84,6 +120,12 @@ main {
     display: grid;
     grid-template-columns: 2fr 3fr;
     /* margin: 10px; */
+}
+
+.name {
+    font-size: 30px;
+    margin: 10px 0 0 0;
+    color: #202020;
 }
 
 #of-the-day {
@@ -95,33 +137,19 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 225px;
+    height: 230px;
+    width: 100%;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.6);
 }
 
-.otd {
-    width: 90%;
-    height: 130px;
-    background-color: white;
-    margin: 20px auto;
-    /* min-height: 130px; */
-    display: grid;
-    grid-template-columns: 130px 1fr;
-    font-family: "Montserrat", sans-serif;
-    box-shadow: 6px 6px rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
+.photo {
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    border: 1px solid white;
 }
 
-.otd-slogan-div {
-    height: 51px;
-}
-
-.otd-info-div {
-    text-align: center;
-    display: grid;
-    grid-template-rows: 50px 1fr 29px;
-}
-
-.otd-photo-div {
+.photo-div {
     height: 100%;
     width: 100%;
     border-radius: 50%;
@@ -130,30 +158,32 @@ main {
     justify-content: center;
 }
 
-.otd-name {
-    font-size: 30px;
-    margin: 10px 0 0 0;
-    color: #202020;
-}
-
-.otd-photo {
-    border-radius: 50%;
-    height: 120px;
-    width: 120px;
-    border: 1px solid white;
-}
-
 #popular {
     grid-row: 2 / 3;
     margin-top: 5px;
     background-color: #202020;
     border-radius: 5px;
-    min-height: 230px;
-    /* text-align: center; */
+    height: 550px;
+    width: 100%;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.6);
 }
 
 .right-border {
     border-right: 1px solid #DDDDDD;
+}
+
+.slogan {
+    color: black;
+    font-size: 18px;
+    margin: 0;
+    max-width: 80%;
+}
+
+.slogan-div {
+    height: 51px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .section-title {
@@ -164,7 +194,7 @@ main {
     display: inline-block;
     padding: 5px 15px 5px 15px;
     font-family: "Montserrat", sans-serif;
-    margin: 10px 0 0 0 ;
+    margin: 20px 0 0 0 ;
     text-align: center;
     width: 300px;
     color: #800000;

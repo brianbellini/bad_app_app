@@ -31,8 +31,12 @@ def about(request):
     return render(request, 'about.html')
 
 def apps_index(request):
+    total = len(App.objects.all())
+    random = randint(1, total)
+    random_app = App.objects.get(id=random)
+    pop_apps = App.objects.all().order_by('net_votes')[:3]
     apps = App.objects.all()
-    return render(request, 'apps/index.html', {'apps': apps})
+    return render(request, 'apps/index.html', {'apps': apps, 'pop_apps': pop_apps, 'random_app': random_app})
 
 def app_detail(request, app_id):
     app = App.objects.get(id=app_id)
