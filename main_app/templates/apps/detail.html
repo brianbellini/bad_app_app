@@ -7,6 +7,7 @@
 <h6>{{ app.tags }}</h2>
 
 <a style="color: black" href="{% url 'app_update' app.id %}">UPDATE THIS SHIT</a>
+<a href="{% url 'app_delete' app.id %}">Delete</a>
 
 
 {% endblock %}

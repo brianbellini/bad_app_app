@@ -37,11 +37,15 @@ def about(request):
     return render(request, 'about.html')
 
 def apps_index(request):
-    total = len(App.objects.all())
-    print(f"total: {total}")
-    random = randint(1, total)
-    print(f"random: {random}")
-    random_app = App.objects.get(id=random)
+    ordered_app = App.objects.all().order_by('-id')
+    total = ordered_app[0].id
+    random_app = None
+    while not random_app:
+        random = randint(1, total)
+        if App.objects.filter(id=random).first():
+            random_app = App.objects.get(id=random)
+        else: 
+            random
     pop_apps = App.objects.all().order_by('net_votes')[:3]
     apps = App.objects.all()
     return render(request, 'apps/index.html', {'apps': apps, 'pop_apps': pop_apps, 'random_app': random_app})
@@ -71,6 +75,7 @@ class AppUpdate(LoginRequiredMixin, UpdateView):
 
 class AppDelete(LoginRequiredMixin, DeleteView):
     model = App
+    success_url = '/home/'
 
 
 #--------------------COMMENTS-----------------------------

@@ -7,7 +7,7 @@
                 <h2 class="section-title">BadApp of the Day</h2>
                 <div class="app-card" id="app-otd-card">
                     <div class="photo-div">
-                        <img class="photo" src="">
+                        <img class="photo" src="https://i.imgur.com/0FDqF1O.png">
                     </div>
                     <div class="info-div">
                         <div class="name-div">
@@ -42,6 +42,12 @@
                             <h5 class="slogan">{{ app.slogan }}</h5>
                         </div>
                         <div class="tags-div">
+                                <form action="{% app.good_vote() %}">
+                                    <button id="good" type="submit">GOOD</button>&nbsp;&nbsp;
+                                </form>
+                                <form action="{% app.bad_vote() %}">
+                                    <button id="bad" type="submit">BAD</button>&nbsp;&nbsp;
+                                </form>
                             <p class="tags"><em>#{{ app.get_tag_display }}</em></p>
                         </div>
                     </div>

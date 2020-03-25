@@ -22,6 +22,12 @@ a {
     margin: 25px auto;
 }
 
+#bad {
+    font-family: "Chango";
+    color: #600000;
+    justify-self: flex-start;
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -52,6 +58,11 @@ footer {
 
 .footer-div {
     margin-right: 15px;
+}
+
+#good {
+    font-family: "Chango";
+    color: #006000;
 }
 
 #greeting {
@@ -219,3 +230,8 @@ main {
     align-items: center; 
     justify-content: flex-end;
 }
+/* 
+.vote-div {
+    height: 29px;
+    width: 100px;
+} */
