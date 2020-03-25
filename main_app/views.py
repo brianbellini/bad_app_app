@@ -20,9 +20,15 @@ def landing(request):
 
 def home(request):
     # App of the day - figure out how to find random
-    total = len(App.objects.all())
-    random = randint(1, total)
-    random_app = App.objects.get(id=random)
+    ordered_app = App.objects.all().order_by('-id')
+    total = ordered_app[0].id
+    random_app = None
+    while not random_app:
+        random = randint(1, total)
+        if App.objects.filter(id=random).first():
+            random_app = App.objects.get(id=random)
+        else: 
+            random
     pop_apps = App.objects.all().order_by('net_votes')[:3]
     my_apps = App.objects.filter(user=request.user)
     return render(request, 'home.html', {'my_apps': my_apps, 'pop_apps': pop_apps, 'random_app': random_app})
