@@ -11,6 +11,8 @@ urlpatterns = [
     path('apps/create/', views.AppCreate.as_view(), name='app_create'),
     path('apps/<int:pk>/update/', views.AppUpdate.as_view(), name='app_update'),
     path('apps/<int:pk>/delete/', views.AppDelete.as_view(), name='app_delete'),
+    path('apps/<int:app_id>/good/', views.app_good, name='good'),
+    path('apps/<int:app_id>/bad/', views.app_bad, name='bad'),
 
     #--------------------ACCOUNTS-----------------------------
     path('accounts/signup/', views.signup, name='signup'),

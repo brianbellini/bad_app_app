@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django import forms
 
-from .models import App, Comment
+from .models import Vote, App, Comment
 from .forms import SignupForm
 from random import randint
 
@@ -53,11 +53,48 @@ def apps_index(request):
 def app_detail(request, app_id):
     app = App.objects.get(id=app_id)
     comments = Comment.objects.filter(app = app_id)
+    votes = Vote.objects.filter(user = request.user.id)
+    voted = False
+    has_voted = False
+    vote_value = None
+    for vote in votes:
+        if vote.app.id == app_id:
+            voted = True
+            vote_value = vote.value
+            break
+        else:
+            voted = False
 
     return render(request, 'apps/detail.html', {
         'app': app,
         'comments': comments,
+        'voted': voted,
+        'vote_value': vote_value,
     })
+
+def app_good(request, app_id):
+    app = App.objects.get(id=app_id)
+    comments = Comment.objects.filter(app = app_id)
+    app.good_vote()
+    vote = Vote()
+    vote.app = app
+    vote.user = request.user
+    vote.value = 1
+    vote.save()
+
+    return redirect("detail", app_id=app_id)
+
+def app_bad(request, app_id):
+    app = App.objects.get(id=app_id)
+    comments = Comment.objects.filter(app = app_id)
+    app.bad_vote()
+    vote = Vote()
+    vote.app = app
+    vote.user = request.user
+    vote.value = -1
+    vote.save()
+
+    return redirect("detail", app_id=app_id)
 
 class AppCreate(LoginRequiredMixin, CreateView):
     model = App
