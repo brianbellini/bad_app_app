@@ -6,7 +6,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
 from django import forms
+from .forms import CommentForm
 
 import uuid
 import boto3
@@ -58,6 +60,7 @@ def apps_index(request):
 def app_detail(request, app_id):
     app = App.objects.get(id=app_id)
     comments = Comment.objects.filter(app = app_id)
+    comment_form = CommentForm()
     votes = Vote.objects.filter(user = request.user.id)
     voted = False
     has_voted = False
@@ -75,6 +78,7 @@ def app_detail(request, app_id):
         'comments': comments,
         'voted': voted,
         'vote_value': vote_value,
+        'comment_form': comment_form,
     })
 
 def app_good(request, app_id):
@@ -143,12 +147,15 @@ def add_comment(request, app_id):
     if form.is_valid():
         new_comment = form.save(commit=False)
         new_comment.app_id = app_id
+        new_comment.user_id = request.user.id
         new_comment.save()
-    return redirect('detal', app_id=app_id)
+    return redirect('detail', app_id=app_id)
 
-class CommentDelete(LoginRequiredMixin, DeleteView):
-  model = Comment
-  success_url = '/apps/'
+def delete_comment(request, app_id, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    comment.delete()
+    return redirect('detail', app_id=app_id)
+
 
 #--------------------ACCOUNTS-----------------------------
 def signup(request):

@@ -56,6 +56,22 @@
         <input type="submit" value="Upload Photo">
     </form>
     
+    <form action="{% url 'add_comment' app.id %}" method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit" class="btn" value="Add Comment">
+    </form>  
+        {% for comment in comments %}
+        <div>
+            <p>{{ comment.words }}</p>
+            <p>{{ comment.user }}</p>
+            <form action="{% url 'delete_comment' app.id comment.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="DELETE!">
+            </form>
+
+        </div>
+        {% endfor %}
 </div>
 <div class="home-right">
     <div class="detail-about-div">
