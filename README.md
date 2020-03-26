@@ -1,14 +1,16 @@
-<h1>Bad App App</h1>
+<h1>BadApp App</h1>
 <h3>Project 3 - Group</h3>
 
-<h4>The Best Group</h4>
-    [Jacob](https://github.com/LaunchPad90)
-    [Cody](https://github.com/CodyLHart)
-    [Brian](https://github.com/brianbellini)
+<h4>The Best Group:</h4>
 
-![Screen Capture](./public/images/screenshots/ScreenShot1.png)
-![Screen Capture](./public/images/screenshots/ScreenShot3.png)
-![Screen Capture](./public/images/screenshots/ScreenShot2.png)
+
+[Jacob](https://github.com/LaunchPad90)
+[Cody](https://github.com/CodyLHart)
+[Brian](https://github.com/brianbellini)
+
+![Screen Capture1](#)
+![Screen Capture2](#)
+![Screen Capture3](#)
 
 <h4>Technologies Used:</h4>
 
