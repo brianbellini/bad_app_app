@@ -7,7 +7,13 @@
                 <h2 class="section-title">BadApp of the Day</h2>
                 <div class="app-card" id="app-otd-card">
                     <div class="photo-div">
-                        <img class="photo" src="https://i.imgur.com/0FDqF1O.png">
+                        {% if app.photo_set.all %}
+                            {% for photo in app.photo_set.all %}
+                                <img class="photo" src="{{photo.url}}">
+                            {% endfor %}
+                        {% else %}
+                            <img class="photo" src="https://i.imgur.com/0FDqF1O.png">
+                        {% endif %}
                     </div>
                     <div class="info-div">
                         <div class="name-div">
@@ -32,7 +38,13 @@
             <a href="{% url 'detail' app.id %}">
                 <div class="app-card">
                     <div class="photo-div">
-                        <img class="photo" src="https://i.imgur.com/e9pPCum.png?1">
+                        {% if app.photo_set.all %}
+                            {% for photo in app.photo_set.all %}
+                                <img class="photo" src="{{photo.url}}">
+                            {% endfor %}
+                        {% else %}
+                            <img class="photo" src="https://i.imgur.com/0FDqF1O.png">
+                        {% endif %}
                     </div>
                     <div class="info-div">
                         <div class="name-div">
@@ -59,7 +71,13 @@
             <a href="{% url 'detail' app.id %}">
                 <div class="app-card">
                     <div class="photo-div">
-                        <img class="photo" src="https://i.imgur.com/e9pPCum.png?1">
+                        {% if app.photo_set.all %}
+                            {% for photo in app.photo_set.all %}
+                                <img class="photo" src="{{photo.url}}">
+                            {% endfor %}
+                        {% else %}
+                            <img class="photo" src="https://i.imgur.com/0FDqF1O.png">
+                        {% endif %}
                     </div>
                     <div class="info-div">
                         <div class="name-div">

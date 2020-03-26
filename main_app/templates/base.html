@@ -21,7 +21,7 @@
             {% endif %}
         </div>
         <nav class="header-nav">
-                <a href="{% url 'about' %}" class="right-border">About</a>
+                <a target="_blank" href="https://en.wikipedia.org/wiki/Jimmy_Page" class="right-border">About Page</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'app_create' %}" class="right-border">Create a BadApp</a>
                 <a href="{% url 'home' %}" class="right-border">My BadApps</a>

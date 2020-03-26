@@ -69,7 +69,7 @@ def app_detail(request, app_id):
             break
         else:
             voted = False
-
+    
     return render(request, 'apps/detail.html', {
         'app': app,
         'comments': comments,
@@ -79,7 +79,6 @@ def app_detail(request, app_id):
 
 def app_good(request, app_id):
     app = App.objects.get(id=app_id)
-    comments = Comment.objects.filter(app = app_id)
     app.good_vote()
     vote = Vote()
     vote.app = app
@@ -91,7 +90,6 @@ def app_good(request, app_id):
 
 def app_bad(request, app_id):
     app = App.objects.get(id=app_id)
-    comments = Comment.objects.filter(app = app_id)
     app.bad_vote()
     vote = Vote()
     vote.app = app
@@ -100,6 +98,24 @@ def app_bad(request, app_id):
     vote.save()
 
     return redirect("detail", app_id=app_id)
+
+def remove_good(request, app_id):
+    app = App.objects.get(id=app_id)
+    app.bad_vote()
+    vote = Vote.objects.filter(app=app_id, user=request.user.id)
+    vote.delete()
+
+    return redirect("detail", app_id=app_id)
+
+def remove_bad(request, app_id):
+    app = App.objects.get(id=app_id)
+    app.good_vote()
+    vote = Vote.objects.filter(app=app_id, user=request.user.id)
+    vote.delete()
+
+    return redirect("detail", app_id=app_id)
+
+
 
 class AppCreate(LoginRequiredMixin, CreateView):
     model = App
@@ -158,20 +174,9 @@ def add_photo(request, app_id):
         try:
             s3.upload_fileobj(photo_file, BUCKET, key)
             url = f"{S3_BASE_URL}{BUCKET}/{key}"
-            photo = Photo(url=url, cat_id=cat_id)
+            photo = Photo(url=url, app_id=app_id)
             photo.save()
         except:
             print('An error occured uploading file to S3')
     return redirect('detail', app_id=app_id)
 
-# {% for photo in app.photo_set.all %}
-#   <img src="{{photo.url}}">
-# {% empty %}
-#   <div>No Photos Uploaded</div>
-# {% endfor %}
-
-# <form action="{% url 'add_photo' app.id %}" enctype="multipart/form-data" method="POST">
-#     {% csrf_token %}
-#     <input type="file" name="photo-file">
-#     <input type="submit" class="btn" value="Upload Photo">
-# </form>
