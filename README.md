@@ -1,12 +1,15 @@
 <h1>BadApp App</h1>
 <h3>Project 3 - Group</h3>
 
-<h4>The Best Group:</h4>
+<h4>Brought to you by The Best Group:</h4>
 
 
 [Jacob](https://github.com/LaunchPad90)
+
 [Cody](https://github.com/CodyLHart)
+
 [Brian](https://github.com/brianbellini)
+
 
 ![Screen Capture1](#)
 ![Screen Capture2](#)
@@ -36,7 +39,7 @@
 
 <h4>Next Steps:</h4>
 
-    Create API for database of bad ideas for reference, becuase this will likely be useful to someone who has an idea but is unaware that it is bad.
+*Create API for database of bad ideas for reference, becuase this will likely be useful to someone who has an idea but is unaware that it is bad.
 
-    If a BadApp gets too many good votes, move app to an archive of good apps, or deleted from database.
+*If a BadApp gets too many good votes, move app to an archive of good apps, or deleted from database.
 
