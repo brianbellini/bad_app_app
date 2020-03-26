@@ -13,6 +13,8 @@ urlpatterns = [
     path('apps/<int:pk>/delete/', views.AppDelete.as_view(), name='app_delete'),
     path('apps/<int:app_id>/good/', views.app_good, name='good'),
     path('apps/<int:app_id>/bad/', views.app_bad, name='bad'),
+    path('apps/<int:app_id>/remove_good/', views.remove_good, name='remove_good'),
+    path('apps/<int:app_id>/remove_bad/', views.remove_bad, name='remove_bad'),
 
     #--------------------ACCOUNTS-----------------------------
     path('accounts/signup/', views.signup, name='signup'),
