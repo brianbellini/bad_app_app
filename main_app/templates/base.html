@@ -28,6 +28,7 @@
                 <a href="{% url 'index' %}" class="right-border">Browse BadApps</a>
                 <a href="{% url 'logout' %}">Log Out &nbsp;</a>
             {% else %}
+            <a href="{% url 'index' %}" class="right-border">Browse BadApps</a>
                 <a href="{% url 'login' %}" class="right-border">Log In</a>
                 <a href="{% url 'signup' %}">Sign Up &nbsp;</a>
             {% endif %}

@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="home-left">
+<div class="detail-left">
     <div class="detail-heading">
         <h5 id="detail-name">{{ app.name }}</h5>
         <div class="detail-tags-div">
-            <p class="tags"><em>#{{ app.get_tag_display }}</em></p>
             {% if app.user == request.user %}
             <div class="detail-edit-div">
-                <a href="{% url 'app_update' app.id %}">EDIT</a>
-                <a href="{% url 'app_delete' app.id %}">DELETE</a>
+                <a class="delete" href="{% url 'app_delete' app.id %}">DELETE</a>
+                <a class="edit" href="{% url 'app_update' app.id %}">EDIT</a>
             </div>
             {% endif %}
+            <p class="tags"><em>#{{ app.get_tag_display }}</em></p>
         </div>
         <h4 id="detail-slogan">&nbsp;{{ app.slogan }}</h4>
         <div class="detail-vote-div">
@@ -49,31 +49,38 @@
                 <a href="{% url 'good' app.id %}" class="good">GOOD</a>
             {% endif %}
         </div>
+        <!-- {% if app.user == request.user %}
+        <form class="photo-form" action="{% url 'add_photo' app.id %}" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <input type="file" name="photo-file">
+            <input type="submit" value="Upload Photo">
+        </form>
+        {% endif %} -->
     </div>
-    <form action="{% url 'add_photo' app.id %}" enctype="multipart/form-data" method="POST">
-        {% csrf_token %}
-        <input type="file" name="photo-file">
-        <input type="submit" value="Upload Photo">
-    </form>
-    
-    <form action="{% url 'add_comment' app.id %}" method="post">
+    <form class="comment-form" action="{% url 'add_comment' app.id %}" method="post">
         {% csrf_token %}
         {{ comment_form.as_p }}
-        <input type="submit" class="btn" value="Add Comment">
-    </form>  
+        <input id="add-comment-button" type="submit" value="Add Comment">
+    </form> 
+    <div class="comment-cards">
         {% for comment in comments %}
-        <div>
-            <p>{{ comment.words }}</p>
-            <p>{{ comment.user }}</p>
-            <form action="{% url 'delete_comment' app.id comment.id %}" method="post">
+        <div class="comment-card">
+            <p class="comment">{{ comment.words }}</p>
+            <div class="comment-user-div">
+                <p class="timestamp">{{ comment.timestamp }}</p>
+                <p class="comment-user">-{{ comment.user }}</p>
+            </div>
+            {% if comment.user == request.user %}
+            <form id="delete-form" action="{% url 'delete_comment' app.id comment.id %}" method="post">
                 {% csrf_token %}
-                <input type="submit" value="DELETE!">
+                <input id="comment-delete" type="submit" value="DELETE!">
             </form>
-
+            {%  endif %}
         </div>
         {% endfor %}
+    </div>
 </div>
-<div class="home-right">
+<div class="detail-right">
     <div class="detail-about-div">
         {% if app.photo_set.all %}
             {% for photo in app.photo_set.all %}
@@ -84,6 +91,16 @@
         {% endif %}
         <h2 class="detail-about">About {{ app.name }}</h2>
     </div>
+    {% if app.user == request.user %}
+    {% if app.photo_set.all %}
+    {% else %}
+        <form class="photo-form" action="{% url 'add_photo' app.id %}" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <input type="file" name="photo-file">
+            <input type="submit" value="Upload Photo">
+        </form>
+    {% endif %}
+    {% endif %}
     <p class="description">{{ app.description }}</p>
 </div>
 

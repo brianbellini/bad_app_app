@@ -9,7 +9,6 @@ from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django import forms
 from .forms import CommentForm
-
 import uuid
 import boto3
 S3_BASE_URL = 'HTTPS://s3-us-east-2.amazonaws.com/'
@@ -25,6 +24,7 @@ def landing(request):
     apps = App.objects.all()
     return render(request, 'landing.html', {'apps': apps})
 
+@login_required
 def home(request):
     # App of the day - figure out how to find random
     ordered_app = App.objects.all().order_by('-id')
@@ -57,9 +57,10 @@ def apps_index(request):
     apps = App.objects.all()
     return render(request, 'apps/index.html', {'apps': apps, 'pop_apps': pop_apps, 'random_app': random_app})
 
+@login_required
 def app_detail(request, app_id):
     app = App.objects.get(id=app_id)
-    comments = Comment.objects.filter(app = app_id)
+    comments = Comment.objects.filter(app = app_id).order_by('-id')
     comment_form = CommentForm()
     votes = Vote.objects.filter(user = request.user.id)
     voted = False
@@ -81,6 +82,7 @@ def app_detail(request, app_id):
         'comment_form': comment_form,
     })
 
+@login_required
 def app_good(request, app_id):
     app = App.objects.get(id=app_id)
     app.good_vote()
@@ -92,6 +94,7 @@ def app_good(request, app_id):
 
     return redirect("detail", app_id=app_id)
 
+@login_required
 def app_bad(request, app_id):
     app = App.objects.get(id=app_id)
     app.bad_vote()
@@ -103,6 +106,7 @@ def app_bad(request, app_id):
 
     return redirect("detail", app_id=app_id)
 
+@login_required
 def remove_good(request, app_id):
     app = App.objects.get(id=app_id)
     app.bad_vote()
@@ -111,6 +115,7 @@ def remove_good(request, app_id):
 
     return redirect("detail", app_id=app_id)
 
+@login_required
 def remove_bad(request, app_id):
     app = App.objects.get(id=app_id)
     app.good_vote()
@@ -123,7 +128,7 @@ def remove_bad(request, app_id):
 
 class AppCreate(LoginRequiredMixin, CreateView):
     model = App
-    fields = ['name', 'description', 'slogan', 'group', 'tag']
+    fields = ['name', 'description', 'slogan', 'developer', 'tag']
     success_url = '/home/'
 
     def form_valid(self, form):
@@ -132,7 +137,7 @@ class AppCreate(LoginRequiredMixin, CreateView):
 
 class AppUpdate(LoginRequiredMixin, UpdateView):
     model = App
-    fields = ['description', 'slogan', 'group', 'tag']
+    fields = ['description', 'slogan', 'developer', 'tag']
 
 
 class AppDelete(LoginRequiredMixin, DeleteView):
@@ -151,6 +156,7 @@ def add_comment(request, app_id):
         new_comment.save()
     return redirect('detail', app_id=app_id)
 
+@login_required
 def delete_comment(request, app_id, comment_id):
     comment = Comment.objects.get(id=comment_id)
     comment.delete()
@@ -173,6 +179,7 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 #--------------------PHOTOS-----------------------------
+@login_required
 def add_photo(request, app_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:

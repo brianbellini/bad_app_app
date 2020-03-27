@@ -45,7 +45,7 @@ class App(models.Model):
     name = models.CharField(max_length=25)
     description = models.TextField(blank=True)
     slogan = models.CharField(max_length=50)
-    group = models.CharField(max_length=50)
+    developer = models.CharField(max_length=50)
     tag = models.CharField(
         max_length=2,
         choices=TAGS,
@@ -70,9 +70,10 @@ class App(models.Model):
 
 
 class Comment(models.Model):
-    words = models.TextField(blank=True)
+    words = models.TextField(blank=True, max_length=140)
     app = models.ForeignKey(App, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
     
 class Vote(models.Model):
     app = models.ForeignKey(App, on_delete=models.CASCADE)
