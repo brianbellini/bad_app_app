@@ -11,9 +11,9 @@
 [Brian](https://github.com/brianbellini)
 
 
-![Screen Capture1](#)
-![Screen Capture2](#)
-![Screen Capture3](#)
+![Screen Capture1](main_app/static/ScreenCaps/ScreenShot1.png)
+![Screen Capture2](main_app/static/ScreenCaps/ScreenShot2.png)
+![Screen Capture3](main_app/static/ScreenCaps/ScreenShot3.png)
 
 <h4>Technologies Used:</h4>
 
