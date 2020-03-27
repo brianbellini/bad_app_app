@@ -30,7 +30,7 @@
 
 <h4>Getting Started:</h4>
 
-[www.badappapp.com](http://www.badappapp.com)
+[www.badappapp.com](https://badapp-app.herokuapp.com/)
 	
 [Trello Board - Planning](https://trello.com/b/9h6jCBzr/user-stories)
 
