@@ -1,16 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="edit-main">
   {% if object %}
-    <h1>Edit <span>{{object.name}}</span></h1>
+    <h1 class="app-form-header">Edit App</h1>
   {% else %}
-    <h1>Add App</h1>
+    <h1 class="app-form-header">Add App</h1>
   {% endif %}
-  <form action="" method="post">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit!">
-  </form>
+  
+  <div class="form">
+    {% if object %}
+      <h1 class="edit-app">{{app.name}}</h1>
+    {% else %}
+      <p>&nbsp;</p>
+    {% endif %}
+    <form class="edit-form" action="" method="post">
+      {% csrf_token %}
+      <table>
+        {{ form.as_table }}
+      </table>
+      <input class="submit" type="submit" value="SUBMIT">
+    </form>
+  </div>
+</div>
 {% endblock %}
+
