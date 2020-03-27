@@ -49,13 +49,6 @@
                 <a href="{% url 'good' app.id %}" class="good">GOOD</a>
             {% endif %}
         </div>
-        <!-- {% if app.user == request.user %}
-        <form class="photo-form" action="{% url 'add_photo' app.id %}" enctype="multipart/form-data" method="POST">
-            {% csrf_token %}
-            <input type="file" name="photo-file">
-            <input type="submit" value="Upload Photo">
-        </form>
-        {% endif %} -->
     </div>
     <form class="comment-form" action="{% url 'add_comment' app.id %}" method="post">
         {% csrf_token %}
@@ -87,7 +80,7 @@
                 <img class="photo" id="detail-photo" src="{{photo.url}}">
             {% endfor %}
         {% else %}
-            <img class="photo" id="detail-photo" src="https://i.imgur.com/0FDqF1O.png">
+            <img class="photo default-photo" id="detail-photo" src="https://www.sitepronews.com/wp-content/uploads/2016/11/website-1778529_640.png">
         {% endif %}
         <h2 class="detail-about">About {{ app.name }}</h2>
     </div>

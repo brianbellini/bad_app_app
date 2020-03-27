@@ -143,6 +143,10 @@ body {
     justify-content: flex-end;
 }
 
+.default-photo {
+    opacity: 20%;
+}
+
 .delete {
     color: white;
     background-color: #800000;
